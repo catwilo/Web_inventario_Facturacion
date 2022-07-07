@@ -1,0 +1,31 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "NodeJS pruebas",
+  "main": "index.html",
+  "scripts": {
+    "dev": "lite-server",
+    "lser": "lite-server",
+    "scss": "sass --watch css/styles.scss css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catwilo/Web.git"
+  },
+  "author": "catwilo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catwilo/Web/issues"
+  },
+  "homepage": "https://github.com/catwilo/Web#readme",
+  "dependencies": {
+    "bootstrap": "4.6",
+    "jquery": "^3.6.0",
+    "open-iconic": "^1.1.1"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "sass": "^1.53.0"
+  }
+}

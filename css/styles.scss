@@ -1,0 +1,31 @@
+$base: aliceblue;
+$jumboTitle: black;
+$fontColor: white;
+$footer: rgb(68, 106, 139);
+
+@mixin margenes($top, $bottom) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+}
+
+#espacioNavbar {
+    @include margenes(58px, 0px);
+
+}
+
+.barraL {
+    width: 80%;
+    margin-right: 0px;
+}
+
+.barraR {
+    width: 20%;
+}
+
+footer {
+    padding: 20px 10px 0 10px;
+    background-color: $footer;
+    @include margenes(10px, 0px);
+    font-size: 66%;
+    color: $fontColor;
+}

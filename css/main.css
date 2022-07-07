@@ -1,0 +1,25 @@
+#espacioNavbar {
+  margin-top: 58px;
+}
+
+.barraL {
+  width: 76%;
+  margin-right: 0px;
+  margin-left: 3%;
+}
+
+.barraR {
+  width: 18%;
+  margin-right: 3%;
+}
+
+footer {
+  padding: 20px 10px 0 10px;
+  background-color: rgb(68, 106, 139);
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 66%;
+  color: whites;
+}
+
+/*# sourceMappingURL=main.css.map */
