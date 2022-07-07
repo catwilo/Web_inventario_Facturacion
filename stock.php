@@ -51,12 +51,13 @@ require 'dbconexion.php';
                 <option value="3">Co. Barras</option>
             </select>
         </div>
+        <?php include('message.php'); ?>
         <div class="accordion" id="acordionTarjeta">
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
-                        <button class="btn btn-outline-success botonTarjeta" type="button" data-toggle="collapse" data-target="#collapseInsertar" aria-expanded="true" aria-controls="collapseInsertar">
-                            Insertar un Producto
+                        <button class="btn btn-outline-success col-sm-12" type="button" data-toggle="collapse" data-target="#collapseInsertar" aria-expanded="true" aria-controls="collapseInsertar">
+                            Insertar un nuevo Producto
                         </button>
                     </h5>
                 </div>
@@ -85,71 +86,71 @@ require 'dbconexion.php';
                     </div>
                 </div>
             </div>
-            <div class="table-responsive" id="tabla">
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                        <th>Nombre</th>
-                        <th>Marca</th>
-                        <th>Disponible</th>
-                        <th>Valor_Unit</th>
-                        <th>Codigo_barras</th>
-                        <th>Edicion</th>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $query = "SELECT * FROM Productos";
-                        $query_run = mysqli_query($conexion, $query);
-                        if (mysqli_num_rows($query_run) > 0) {
-                            foreach ($query_run as $item) {
-                        ?>
-                                <tr>
-                                    <td><?= $item['nombre']; ?></td>
-                                    <td><?= $item['marca']; ?></td>
-                                    <td><?= $item['disponible']; ?></td>
-                                    <td><?= $item['valor_unitario']; ?></td>
-                                    <td><?= $item['codigo_barras']; ?></td>
-                                    <td>
-                                        <a class="btn btn-success" href="updtConn.php?codigo_barras=<?= $item['codigo_barras']; ?>">
-                                            Edit
-                                        </a>
-                                        <a class="btn btn-danger" href="">
-                                            delete
-                                        </a>
-                                    </td>
-                                </tr>
-                        <?php
-                            }
-                        } else {
-                            echo "<h5> No se encontraron registros </h5>";
+        </div>
+        <div class="table-responsive" id="tabla">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Disponible</th>
+                    <th>Valor_Unit</th>
+                    <th>Codigo_barras</th>
+                    <th>Edicion</th>
+                </thead>
+                <tbody>
+                    <?php
+                    $query = "SELECT * FROM Productos";
+                    $query_run = mysqli_query($conexion, $query);
+                    if (mysqli_num_rows($query_run) > 0) {
+                        foreach ($query_run as $item) {
+                    ?>
+                            <tr>
+                                <td><?= $item['nombre']; ?></td>
+                                <td><?= $item['marca']; ?></td>
+                                <td><?= $item['disponible']; ?></td>
+                                <td><?= $item['valor_unitario']; ?></td>
+                                <td><?= $item['codigo_barras']; ?></td>
+                                <td>
+                                    <a class="btn btn-success" href="updtConn.php?codigo_barras=<?= $item['codigo_barras']; ?>">
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger" href="">
+                                        delete
+                                    </a>
+                                </td>
+                            </tr>
+                    <?php
                         }
-                        ?>
-                    </tbody>
-                </table>
-                <?php include('message.php'); ?>
+                    } else {
+                        echo "<h5> No se encontraron registros </h5>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-sm-12 d-flex flex-file">
+                &emsp;&emsp;
+                <p>
+                    Productos y asistencia
+                </p>
+                &emsp; &emsp;
+                <p>
+                    <span class="oi oi-inbox footer-icon"></span>
+                    camylousuga1@gmail.com
+                </p>
+                &emsp;
+                <p>
+                    <span class="oi oi-phone"></span>
+                    +57 3506933291
+                </p>
             </div>
         </div>
-        <footer>
-            <div class="row">
-                <div class="col-sm-12 d-flex flex-file">
-                    &emsp;&emsp;
-                    <p>
-                        Productos y asistencia
-                    </p>
-                    &emsp; &emsp;
-                    <p>
-                        <span class="oi oi-inbox footer-icon"></span>
-                        camylousuga1@gmail.com
-                    </p>
-                    &emsp;
-                    <p>
-                        <span class="oi oi-phone"></span>
-                        +57 3506933291
-                    </p>
-                </div>
-            </div>
-        </footer>
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
