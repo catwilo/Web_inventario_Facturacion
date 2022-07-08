@@ -5,6 +5,11 @@
 .tabla {
   margin-left: 50px;
 }
+
+.botonAgregar {
+  height: 38px;
+}
+
 .container {
   margin: 0px auto;
 }
