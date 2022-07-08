@@ -1,8 +1,7 @@
 <?php
 session_start();
 require 'dbconexion.php';
-
-if (isset($_POST['nombre'])) {
+if (isset($_POST['codigoBarras'])) {
 
     $name = $_POST['nombre'];
     $mark = $_POST['marca'];
@@ -14,13 +13,16 @@ if (isset($_POST['nombre'])) {
     $query_run=mysqli_query($conexion, $query);
 
     if ($query_run) {
-        $_SESSION['message'] = "Producto agregado correctamente.";
+        $_SESSION['message'] = "  Producto agregado correctamente.";
         header("Location: stock.php");
         exit(0);
     } else {
-        $_SESSION['message'] = "Hay un problema para agregar el producto...";
+        $_SESSION['message'] = "  Hay un problema para agregar el producto...";
         header("Location: stock.php");
         exit(0);
     }
-}
+} else {
+    $_SESSION['message'] = "  Por favor llene todos los datos requeridos";
+    header("Location: stock.php");
+    exit(0);}
 ?>

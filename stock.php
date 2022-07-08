@@ -110,19 +110,19 @@ require 'dbconexion.php';
                                 <td><?= $item['disponible']; ?></td>
                                 <td><?= $item['valor_unitario']; ?></td>
                                 <td><?= $item['codigo_barras']; ?></td>
-                                <td>
+                                <td class='col-sm-1'>
                                     <a class="btn btn-success" href="updtConn.php?codigo_barras=<?= $item['codigo_barras']; ?>">
-                                        Edit
+                                        <span class="oi oi-pencil"></span>
                                     </a>
                                     <a class="btn btn-danger" href="">
-                                        delete
+                                        <span class="oi  oi-delete"></span>
                                     </a>
                                 </td>
                             </tr>
                     <?php
                         }
                     } else {
-                        echo "<h5> No se encontraron registros </h5>";
+                        echo "<td><h5> NO SE ENCONTRARON REGISTROS </h5></td><td></td><td></td><td></td><td></td><td></td>";
                     }
                     ?>
                 </tbody>
