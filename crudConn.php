@@ -11,15 +11,27 @@ if (isset($_POST['botonSave'])) {
     $cod_barr = mysqli_real_escape_string($conexion, $_POST['codigoBarras']);
 
     $query = "INSERT INTO `Productos`(`nombre`, `marca`, `disponible`, `valor_unitario`, `codigo_barras`) VALUES ('$name','$mark','$available','$v_unitario','$cod_barr')";
-    try {
-        $query_run = mysqli_query($conexion, $query);
-        if ($query_run) {
-            $_SESSION['messageSuccess'] = "  Producto agregado correctamente.";
-            header("Location: stock.php");
-            exit(0);
+    if ($name != '') {
+        try {
+            $query_run = mysqli_query($conexion, $query);
+            if ($query_run) {
+                $_SESSION['messageSuccess'] = "  Producto agregado correctamente.";
+                header("Location: stock.php");
+                exit(0);
+            }
+        } catch (\Throwable $th) {
+            if ($v_unitario == '' or $cod_barr == '' or $available == '') {
+                $_SESSION['messageFail'] = "  Falta completar los campos obligatorios.";
+                header("Location: stock.php");
+                exit(0);
+            } else {
+                $_SESSION['messageFail'] = "  El Nombre o Codigo de barras ya existe.";
+                header("Location: stock.php");
+                exit(0);
+            }
         }
-    } catch (\Throwable $th) {
-        $_SESSION['messageFail'] = "  No se ha podido ejecutar el comando de insercion";
+    } else {
+        $_SESSION['messageFail'] = "  Es requerido un nombre de producto.";
         header("Location: stock.php");
         exit(0);
     }
@@ -53,7 +65,7 @@ if (isset($_POST['botonSave'])) {
     try {
         $query_run = mysqli_query($conexion, $query);
         if ($query_run) {
-            $_SESSION['messageSuccess'] = "  Producto eliminado correctamente.";
+            $_SESSION['messageSuccess1'] = "  Producto eliminado correctamente.";
             header("Location: stock.php");
             exit(0);
         }
