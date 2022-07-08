@@ -88,7 +88,7 @@ require 'dbconexion.php';
                                     <div class="form-group col-sm-2">
                                         <input type="text" class="form-control" value="<?= $producto['codigo_barras']; ?>" name="codigoBarras">
                                     </div>
-                                    <button type="submit" class="btn btn-lg btn-outline-success col-sm-1 botonAgregar">
+                                    <button type="submit" name="botonUpdate" class="btn btn-lg btn-outline-success col-sm-1 botonAgregar">
                                         <span class="oi oi-plus"></span>
                                     </button>
                                 </form>
@@ -118,7 +118,7 @@ require 'dbconexion.php';
                                 <div class="form-group col-sm-2">
                                     <input type="text" class="form-control" placeholder="codigo_barras" name="codigoBarras">
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-outline-success col-sm-1 botonAgregar">
+                                <button type="submit" name="botonSave" class="btn btn-lg btn-outline-success col-sm-1 botonAgregar">
                                     <span class="oi oi-plus"></span>
                                 </button>
                             </form>
