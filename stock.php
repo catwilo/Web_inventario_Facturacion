@@ -120,7 +120,7 @@ require 'dbconexion.php';
                 <th>Disponible</th>
                 <th>Valor_Unit</th>
                 <th>Codigo_barras</th>
-                <th>Edicion</th>
+                <th style="text-align: right;">Edicion</th>
             </thead>
             <tbody>
                 <?php
@@ -136,7 +136,7 @@ require 'dbconexion.php';
                             <td><?= $item['codigo_barras']; ?></td>
 
 
-                            <td class='col-sm-4'>
+                            <td class='col-sm-4' style="text-align: right;">
                                 <a class="btn btn-success" href="stock.php?id=<?= $item['id']; ?>">
                                     <span class="oi oi-pencil"></span>
                                 </a>
