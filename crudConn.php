@@ -23,8 +23,7 @@ if (isset($_POST['botonSave'])) {
         header("Location: stock.php");
         exit(0);
     }
-}
-if (isset($_POST['botonUpdate'])) {
+} elseif (isset($_POST['botonUpdate'])) {
 
     $name = mysqli_real_escape_string($conexion, $_POST['nombre']);
     $mark = mysqli_real_escape_string($conexion, $_POST['marca']);
@@ -44,6 +43,22 @@ if (isset($_POST['botonUpdate'])) {
         }
     } catch (\Throwable $th) {
         $_SESSION['messageFail'] = "  No se ha podido ejecutar el comando de actualizacion";
+        header("Location: stock.php");
+        exit(0);
+    }
+} elseif (isset($_POST['deleteProduct'])) {
+    $idDelete = mysqli_real_escape_string($conexion, $_POST['deleteProduct']);
+    $query = "DELETE FROM Productos WHERE id = '$idDelete'";
+
+    try {
+        $query_run = mysqli_query($conexion, $query);
+        if ($query_run) {
+            $_SESSION['messageSuccess'] = "  Producto eliminado correctamente.";
+            header("Location: stock.php");
+            exit(0);
+        }
+    } catch (\Throwable $th) {
+        $_SESSION['messageFail'] = "  No se ha podido ejecutar el comando de eliminacion";
         header("Location: stock.php");
         exit(0);
     }
