@@ -15,8 +15,7 @@
         <a class="navbar-brand" href="./index.php">
             Empresa Veterinaria
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -44,13 +43,20 @@
     </div>
     <footer>
         <div class="row">
-            <div class="col-sm-2 d-flex flex-column">
-                <a href="https://www.google.com">Google+</a>
-            </div>
-            <div class="col-sm-9">
+            <div class="col-sm-12 d-flex flex-file">
+                &emsp;&emsp;
+                <p>
+                    Productos y asistencia
+                </p>
+                &emsp; &emsp;
                 <p>
                     <span class="oi oi-inbox footer-icon"></span>
                     camylousuga1@gmail.com
+                </p>
+                &emsp;
+                <p>
+                    <span class="oi oi-phone"></span>
+                    +57 3506933291
                 </p>
             </div>
         </div>

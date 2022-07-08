@@ -63,16 +63,17 @@ require 'dbconexion.php';
                 </div>
 
                 <?php
-                if (isset($_GET['codigo_barras'])) {
-                    $c_bar = mysqli_real_escape_string($conexion, $_GET['codigo_barras']);
-                    $query = "SELECT * FROM Productos WHERE codigo_barras='$c_bar'";
+                if (isset($_GET['id'])) {
+                    $id = mysqli_real_escape_string($conexion, $_GET['id']);
+                    $query = "SELECT * FROM Productos WHERE id='$id'";
                     $query_run = mysqli_query($conexion, $query);
                     if (mysqli_num_rows($query_run) > 0) {
                         $producto = mysqli_fetch_array($query_run);
                 ?>
                         <div id="collapseInsertar" class="collapse show" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
                             <div class="card-body">
-                                <form class="form-row" action="addConn.php" method="post">
+                                <form class="form-row" action="crudConn.php" method="post">
+
                                     <div class="form-group col-sm-3">
                                         <input type="text" class="form-control" value="<?= $producto['nombre']; ?>" name="nombre">
                                     </div>
@@ -88,6 +89,9 @@ require 'dbconexion.php';
                                     <div class="form-group col-sm-2">
                                         <input type="text" class="form-control" value="<?= $producto['codigo_barras']; ?>" name="codigoBarras">
                                     </div>
+
+                                    <input type="hidden" name="id" value="<?= $producto['id']; ?>">
+
                                     <button type="submit" name="botonUpdate" class="btn btn-lg btn-outline-success col-sm-1 botonAgregar">
                                         <span class="oi oi-plus"></span>
                                     </button>
@@ -96,13 +100,13 @@ require 'dbconexion.php';
                         </div>
                     <?php
                     } else {
-                        echo "<h4>Ningun producto registrado con el codigo de barras registrado</h4>";
+                        echo "<h4>Ningun producto registrado con el Id especificado</h4>";
                     }
                 } else {
                     ?>
                     <div id="collapseInsertar" class="collapse" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
                         <div class="card-body">
-                            <form class="form-row" action="addConn.php" method="post">
+                            <form class="form-row" action="crudConn.php" method="post">
                                 <div class="form-group col-sm-3">
                                     <input type="text" class="form-control" placeholder="Nombre" name="nombre">
                                 </div>
@@ -142,7 +146,7 @@ require 'dbconexion.php';
                 </thead>
                 <tbody>
                     <?php
-                    $query = "SELECT * FROM Productos";
+                    $query = "SELECT * FROM `Productos`";
                     $query_run = mysqli_query($conexion, $query);
                     if (mysqli_num_rows($query_run) > 0) {
                         foreach ($query_run as $item) { ?>
@@ -152,13 +156,17 @@ require 'dbconexion.php';
                                 <td><?= $item['disponible']; ?></td>
                                 <td><?= $item['valor_unitario']; ?></td>
                                 <td><?= $item['codigo_barras']; ?></td>
-                                <td class='col-sm-1'>
-                                    <a class="btn btn-success" href="stock.php?codigo_barras=<?= $item['codigo_barras']; ?>">
+
+
+                                <td class='col-sm-4'>
+                                    <a class="btn btn-success" href="stock.php?id=<?= $item['id']; ?>">
                                         <span class="oi oi-pencil"></span>
                                     </a>
-                                    <a class="btn btn-danger" href="">
-                                        <span class="oi oi-trash"></span>
-                                    </a>
+                                    <form action="crudConn.php" method="POST">
+                                        <button class="btn btn-danger in-line" href="">
+                                            <span class="oi oi-trash"></span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                     <?php

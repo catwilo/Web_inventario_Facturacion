@@ -11,14 +11,15 @@ if (isset($_POST['botonSave'])) {
     $cod_barr = mysqli_real_escape_string($conexion, $_POST['codigoBarras']);
 
     $query = "INSERT INTO `Productos`(`nombre`, `marca`, `disponible`, `valor_unitario`, `codigo_barras`) VALUES ('$name','$mark','$available','$v_unitario','$cod_barr')";
-    $query_run = mysqli_query($conexion, $query);
-
-    if ($query_run) {
-        $_SESSION['message'] = "  Producto agregado correctamente.";
-        header("Location: stock.php");
-        exit(0);
-    } else {
-        $_SESSION['message'] = "  Hay un problema para agregar el producto...";
+    try {
+        $query_run = mysqli_query($conexion, $query);
+        if ($query_run) {
+            $_SESSION['messageSuccess'] = "  Producto agregado correctamente.";
+            header("Location: stock.php");
+            exit(0);
+        }
+    } catch (\Throwable $th) {
+        $_SESSION['messageFail'] = "  No se ha podido ejecutar el comando de insercion";
         header("Location: stock.php");
         exit(0);
     }
@@ -30,17 +31,19 @@ if (isset($_POST['botonUpdate'])) {
     $available = mysqli_real_escape_string($conexion, $_POST['disponible']);
     $v_unitario = mysqli_real_escape_string($conexion, $_POST['valorUnitario']);
     $cod_barr = mysqli_real_escape_string($conexion, $_POST['codigoBarras']);
+    $id = mysqli_real_escape_string($conexion, $_POST['id']);
 
-    $query = "UPDATE `Productos` SET `nombre`='$name', `marca`='$mark', `disponible`='$available', `valor_unitario`='$v_unitario' 
-        WHERE `Productos`.`codigo_barras`='$cod_barr'";
-    $query_run = mysqli_query($conexion, $query);
-
-    if ($query_run) {
-        $_SESSION['message'] = "  Producto actualizado correctamente.";
-        header("Location: stock.php");
-        exit(0);
-    } else {
-        $_SESSION['message'] = "  Hay un problema para actualizar el producto...";
+    $query = "UPDATE `Productos` SET `nombre`='$name', `marca`='$mark', `disponible`='$available', `valor_unitario`='$v_unitario', `codigo_barras`='$cod_barr'
+        WHERE `Productos`.`id`='$id'";
+    try {
+        $query_run = mysqli_query($conexion, $query);
+        if ($query_run) {
+            $_SESSION['messageSuccess'] = "  Producto actualizado correctamente.";
+            header("Location: stock.php");
+            exit(0);
+        }
+    } catch (\Throwable $th) {
+        $_SESSION['messageFail'] = "  No se ha podido ejecutar el comando de actualizacion";
         header("Location: stock.php");
         exit(0);
     }
