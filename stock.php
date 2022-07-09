@@ -46,8 +46,7 @@ require 'dbconexion.php';
                 $query = "SELECT * FROM Productos WHERE id='$id'";
                 $query_run = mysqli_query($conexion, $query);
                 if (mysqli_num_rows($query_run) > 0) {
-                    $producto = mysqli_fetch_array($query_run);
-            ?>
+                    $producto = mysqli_fetch_array($query_run); ?>
                     <div id="collapseInsertar" class="collapse show" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
                         <div class="card-body">
                             <form class="form-row" action="crudConn.php" method="post">
@@ -120,7 +119,7 @@ require 'dbconexion.php';
                 <th>Disponible</th>
                 <th>Valor_Unit</th>
                 <th>Codigo_barras</th>
-                <th style="text-align: right;">Edicion</th>
+                <th>Edicion</th>
             </thead>
             <tbody>
                 <?php
@@ -133,18 +132,16 @@ require 'dbconexion.php';
                             <td><?= $item['marca']; ?></td>
                             <td><?= $item['disponible']; ?></td>
                             <td><?= $item['valor_unitario']; ?></td>
-                            <td><?= $item['codigo_barras']; ?></td>
-
-
+                            <td><?= $item['codigo_barras']; ?>
+                            </td>
                             <td class='col-sm-4' style="text-align: right;">
                                 <a class="btn btn-success" href="stock.php?id=<?= $item['id']; ?>">
                                     <span class="oi oi-pencil"></span>
                                 </a>
-                                <form action="crudConn.php" method="POST" class=" d-inline">
-                                    <button type="submit" name="deleteProduct" value="<?= $item['id']; ?>" class="btn btn-danger" href="">
-                                        <span class="oi oi-trash"></span>
-                                    </button>
-                                </form>
+                                <input type="hidden" class="idDelValue" value="<?= $item['id']; ?>">
+                                <a href="javascript:void(0)" class="btn btn-outline-danger borrarBtnAjax">
+                                    <span class="oi oi-trash"></span>
+                                </a>
                             </td>
                         </tr>
                 <?php

@@ -2,6 +2,10 @@
   margin-top: 58px;
 }
 
+th {
+  text-align: center;
+}
+
 .tabla {
   margin-left: 50px;
 }
