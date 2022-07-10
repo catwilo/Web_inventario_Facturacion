@@ -18,9 +18,9 @@
         </div>
     </div>
 </footer>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+<script src="modulos/jquery/dist/jquery.min.js"></script>
+<script src="modulos/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="modulos/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.borrarBtnAjax').click(function(e) {
