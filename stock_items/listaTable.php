@@ -2,12 +2,12 @@
     <table class="table table-striped">
         <thead class="thead-dark">
             <th width="1%"><span class="oi oi-command"></span></th>
-            <th width="25%">Nombre</th>
-            <th width="15%">Marca</th>
-            <th width="5%">Disp</th>
+            <th width="20%">Nombre</th>
+            <th width="10%">Marca</th>
+            <th width="1%">Disp</th>
             <th width="1%">V_Unit</th>
-            <th width="1%">Cod_barras</th>
-            <th width="1%">Edicion</th>
+            <th width="5%">Cod_barras</th>
+            <th width="5%">Edicion</th>
         </thead>
         <tbody>
             <?php
@@ -26,9 +26,8 @@
                             <td><?= $item['marca']; ?></td>
                             <td><?= $item['disponible']; ?></td>
                             <td><?= $item['valor_unitario']; ?></td>
-                            <td><?= $item['codigo_barras']; ?>
-                            </td>
-                            <td>
+                            <td><?= $item['codigo_barras']; ?></td>
+                            <td style="text-align: left;">
                                 <a class="btn btn-success" href="stock.php?id=<?= $item['id']; ?>">
                                     <span class="oi oi-pencil"></span>
                                 </a>
@@ -56,9 +55,8 @@
                             <td><?= $item['marca']; ?></td>
                             <td><?= $item['disponible']; ?></td>
                             <td><?= $item['valor_unitario']; ?></td>
-                            <td><?= $item['codigo_barras']; ?>
-                            </td>
-                            <td class='col-sm-4' style="text-align: right;">
+                            <td><?= $item['codigo_barras']; ?></td>
+                            <td style="padding-left: 0px;padding-right: 0px;">
                                 <a class="btn btn-success" href="stock.php?id=<?= $item['id']; ?>">
                                     <span class="oi oi-pencil"></span>
                                 </a>
