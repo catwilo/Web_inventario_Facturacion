@@ -22,17 +22,17 @@ if (isset($_POST['botonSave'])) {
         } catch (\Throwable $th) {
             if ($v_unitario == '' or $cod_barr == '' or $available == '') {
                 $_SESSION['messageFail'] = "  Falta completar los campos obligatorios.";
-                header("Location: stock.php");
+                header("Location: stock.php?error&name=$name&mark=$mark&available=$available&v_unitario=$v_unitario&cod_barr=$cod_barr");
                 exit(0);
             } else {
-                $_SESSION['messageFail'] = "  El Nombre o Codigo de barras ya existe.";
-                header("Location: stock.php");
+                $_SESSION['messageFail'] = "  No se pudo agregar el producto.";
+                header("Location: stock.php?error&name=$name&mark=$mark&available=$available&v_unitario=$v_unitario&cod_barr=$cod_barr");
                 exit(0);
             }
         }
     } else {
         $_SESSION['messageFail'] = "  Es requerido un nombre de producto.";
-        header("Location: stock.php");
+        header("Location: stock.php?error&name=$name&mark=$mark&available=$available&v_unitario=$v_unitario&cod_barr=$cod_barr");
         exit(0);
     }
 } elseif (isset($_POST['botonUpdate'])) {
@@ -54,8 +54,8 @@ if (isset($_POST['botonSave'])) {
             exit(0);
         }
     } catch (\Throwable $th) {
-        $_SESSION['messageFail'] = "  No se ha podido ejecutar el comando de actualizacion";
-        header("Location: stock.php");
+        $_SESSION['messageFail'] = "  No se pudo actualizar el producto.";
+        header("Location: stock.php?id=$id");
         exit(0);
     }
 } elseif (isset($_POST['borrar_btn'])) {

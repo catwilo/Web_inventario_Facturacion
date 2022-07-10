@@ -12,12 +12,8 @@
             <?php
             if ($_GET['dato'] != '') {
                 $dato = $_GET['dato'];
-                $columna = $_GET['columna'];
-                if ($columna == '') {
-                    $query = "SELECT * FROM `Productos` WHERE `nombre`='$dato'";
-                } else {
-                    $query = "SELECT * FROM `Productos` WHERE `$columna`='$dato'";
-                }
+
+                $query = "SELECT * FROM `Productos` WHERE INSTR(nombre,'$dato')>0 OR  INSTR(marca,'$dato')>0 OR INSTR(codigo_barras,'$dato')>0;";
 
                 $query_run = mysqli_query($conexion, $query);
                 if (mysqli_num_rows($query_run) > 0) {

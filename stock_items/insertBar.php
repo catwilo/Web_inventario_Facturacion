@@ -51,8 +51,35 @@
             } else {
                 echo "<h4>Ningun producto registrado con el Id especificado</h4>";
             }
-        } else {
+        } elseif (isset($_GET['error'])) {
             ?>
+            <div id="collapseInsertar" class="collapse show" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
+                <div class="card-body">
+                    <form class="form-row" action="crudConn.php" method="post">
+                        <div class="form-group col-sm-3">
+                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" value="<?= $_GET['name']; ?>">
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <input type="text" class="form-control" placeholder="Marca" name="marca" value="<?= $_GET['mark']; ?>">
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <input type="text" class="form-control" placeholder="Disponible" name="disponible" value="<?= $_GET['available']; ?>">
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <input type="text" class="form-control" placeholder="Valor_Unit" name="valorUnitario" value="<?= $_GET['v_unitario']; ?>">
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <input type="text" class="form-control" placeholder="codigo_barras" name="codigoBarras" value="<?= $_GET['cod_barr']; ?>">
+                        </div>
+                        <button type="submit" name="botonSave" class="btn btn-lg btn-outline-success col-sm-1 botonAgregar">
+                            <span class="oi oi-plus"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        <?php
+        } else {
+        ?>
             <div id="collapseInsertar" class="collapse" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
                 <div class="card-body">
                     <form class="form-row" action="crudConn.php" method="post">
