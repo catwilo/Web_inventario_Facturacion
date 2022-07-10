@@ -7,7 +7,7 @@
     <title>Inventario Stock</title>
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--agregue un ? para que se fuerce la lectura del css-->
-    <link href="css/main.css?" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <link href="node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
 </head>
 
