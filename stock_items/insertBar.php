@@ -10,15 +10,19 @@
 
         <?php
         if (isset($_GET['id'])) {
+
             $id = mysqli_real_escape_string($conexion, $_GET['id']);
             $query = "SELECT * FROM Productos WHERE id='$id'";
             $query_run = mysqli_query($conexion, $query);
-            if (mysqli_num_rows($query_run) > 0) {
-                $producto = mysqli_fetch_array($query_run); ?>
-                <div id="collapseInsertar" class="collapse show" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
-                    <div class="card-body">
-                        <form class="form-row" action="crudConn.php" method="post">
 
+            if (mysqli_num_rows($query_run) > 0) {
+
+                $producto = mysqli_fetch_array($query_run); ?>
+
+                <div id="collapseActualizar" class="collapse show" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
+                    <div class="card-body">
+
+                        <form class="form-row" action="crudConn.php" method="post">
                             <div class="form-group col-sm-3">
                                 <input type="text" class="form-control" value="<?= $producto['nombre']; ?>" name="nombre">
                             </div>
