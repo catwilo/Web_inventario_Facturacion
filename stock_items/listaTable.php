@@ -2,19 +2,19 @@
     <table class="table table-striped">
         <thead class="thead-dark">
             <th width="1%"><span class="oi oi-command"></span></th>
-            <th width="20%">Nombre</th>
-            <th width="10%">Marca</th>
-            <th width="1%">Disp</th>
-            <th width="1%">V_Unit</th>
-            <th width="5%">Cod_barras</th>
-            <th width="5%">Edicion</th>
+            <th width="30%">Nombre</th>
+            <th width="20%">Categoria</th>
+            <th width="20%">Disponible</th>
+            <th width="20%">V_Unitario</th>
+            <th width="5%">Codigo</th>
+            <th width="5%">Edic.</th>
         </thead>
         <tbody>
             <?php
             if ($_GET['dato'] != '') {
                 $dato = $_GET['dato'];
 
-                $query = "SELECT * FROM `Productos` WHERE INSTR(nombre,'$dato')>0 OR  INSTR(marca,'$dato')>0 OR INSTR(codigo_barras,'$dato')>0;";
+                $query = "SELECT * FROM `View_Productos` WHERE INSTR(nombre,'$dato')>0 OR  INSTR(marca,'$dato')>0 OR INSTR(codigo_barras,'$dato')>0 OR INSTR(categoria,'$dato')>0;";
 
                 $query_run = mysqli_query($conexion, $query);
                 if (mysqli_num_rows($query_run) > 0) {
@@ -22,8 +22,8 @@
                     foreach ($query_run as $item) { ?>
                         <tr>
                             <td class="col-1"><?= $contador ?></td>
-                            <td><?= $item['nombre']; ?></td>
-                            <td><?= $item['marca']; ?></td>
+                            <td><?= $item['nombre']; ?><?= " " ?><?= $item['marca']; ?></td>
+                            <td><?= $item['categoria']; ?></td>
                             <td><?= $item['disponible']; ?></td>
                             <td><?= $item['valor_unitario']; ?></td>
                             <td><?= $item['codigo_barras']; ?></td>
@@ -44,15 +44,15 @@
                     echo "<td><h5> NO SE ENCONTRARON REGISTROS </h5></td><td></td><td></td><td></td><td></td><td></td>";
                 }
             } else {
-                $query = "SELECT * FROM `Productos`";
+                $query = "SELECT * FROM `View_Productos`";
                 $query_run = mysqli_query($conexion, $query);
                 if (mysqli_num_rows($query_run) > 0) {
                     $contador = 1;
                     foreach ($query_run as $item) { ?>
                         <tr>
                             <td class="col-1"><?= $contador ?></td>
-                            <td><?= $item['nombre']; ?></td>
-                            <td><?= $item['marca']; ?></td>
+                            <td><?= $item['nombre']; ?><?= " " ?><?= $item['marca']; ?></td>
+                            <td><?= $item['categoria']; ?></td>
                             <td><?= $item['disponible']; ?></td>
                             <td><?= $item['valor_unitario']; ?></td>
                             <td><?= $item['codigo_barras']; ?></td>
