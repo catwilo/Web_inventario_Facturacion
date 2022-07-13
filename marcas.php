@@ -8,12 +8,12 @@ require 'dbconexion.php';
         Facturacion
     </a>
 </li>
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="./stock.php">
         Productos
     </a>
 </li>
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link" href="./marcas.php">
         Marcas
     </a>
@@ -28,16 +28,16 @@ require 'dbconexion.php';
 </nav>
 
 <div class="container col-sm-12">
-    <?php include('stock_items/searchBar.php'); ?>
+    <?php include('marcas_items/searchBar.php'); ?>
     <hr>
     <?php include('message.php'); ?>
-    <?php include('stock_items/insertBar.php'); ?>
-    <?php include('stock_items/listaTable.php'); ?>
+    <?php include('marcas_items/insertBar.php'); ?>
+    <?php include('marcas_items/listaTable.php'); ?>
 </div>
 <?php include('includes/footer.php'); ?>
 <script>
     $(document).ready(function() {
-        $('.borrarBtnAjax').click(function(e) {
+        $('.borrarBtnMarca').click(function(e) {
             e.preventDefault();
             var idDelete = $(this).closest("tr").find('.idDelValue').val();
             swal({
@@ -52,7 +52,7 @@ require 'dbconexion.php';
 
                         $.ajax({
                             type: "POST",
-                            url: "crudConn.php",
+                            url: "marcas_items/crudConn.php",
                             data: {
                                 "borrar_btn": 1,
                                 "id_delete": idDelete,
@@ -78,4 +78,5 @@ require 'dbconexion.php';
     });
 </script>
 </body>
+
 </html>

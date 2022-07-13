@@ -3,12 +3,18 @@
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
                 <button class="btn btn-outline-primary col-sm-12" type="button" data-toggle="collapse" data-target="#collapseInsertar" aria-expanded="true" aria-controls="collapseInsertar">
-                    Insertar un nuevo Producto
+                    Insertar un Producto
                 </button>
             </h5>
         </div>
 
         <?php
+        $queryCat = "SELECT * FROM Categorias";
+        $queryMar = "SELECT * FROM Marcas";
+
+        $queryCat_run = mysqli_query($conexion, $queryCat);
+        $queryMar_run = mysqli_query($conexion, $queryMar);
+
         if (isset($_GET['id'])) {
 
             $id = mysqli_real_escape_string($conexion, $_GET['id']);
@@ -22,12 +28,43 @@
                 <div id="collapseActualizar" class="collapse show" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
                     <div class="card-body">
 
-                        <form class="form-row" action="crudConn.php" method="post">
+                        <form class="form-row" action="stock_items/crudConn.php" method="post">
                             <div class="form-group col-sm-3">
                                 <input type="text" class="form-control" value="<?= $producto['nombre']; ?>" name="nombre">
                             </div>
-                            <div class="form-group col-sm-3">
-                                <input type="text" class="form-control" value="<?= $producto['marca']; ?>" name="marca">
+                            <div class="form-group col-sm-1">
+                                <select class="form-control" placeholder="Marca" name="marca">
+                                    <?php
+                                    foreach ($queryMar_run as $item) {
+                                        if ($item['id'] == $producto['marca']) {
+                                    ?>
+                                            <option selected value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <option value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-1">
+                                <select class="form-control" placeholder="Categoria" name="categoria">
+                                    <?php
+                                    foreach ($queryCat_run as $item) {
+                                        if ($item['id'] == $producto['categoria']) {
+                                    ?>
+                                            <option selected value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <option value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
                             </div>
                             <div class="form-group col-sm-1">
                                 <input type="text" class="form-control" value="<?= $producto['disponible']; ?>" name="disponible">
@@ -55,12 +92,43 @@
             ?>
             <div id="collapseInsertar" class="collapse show" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
                 <div class="card-body">
-                    <form class="form-row" action="crudConn.php" method="post">
+                    <form class="form-row" action="stock_items/crudConn.php" method="post">
                         <div class="form-group col-sm-3">
                             <input type="text" class="form-control" placeholder="Nombre" name="nombre" value="<?= $_GET['name']; ?>">
                         </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" placeholder="Marca" name="marca" value="<?= $_GET['mark']; ?>">
+                        <div class="form-group col-sm-1">
+                            <select class="form-control" placeholder="Marca" name="marca">
+                                <?php
+                                foreach ($queryMar_run as $item) {
+                                    if ($item['id'] == $producto['marca']) {
+                                ?>
+                                        <option selected value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <option value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <select class="form-control" placeholder="Categoria" name="categoria">
+                                <?php
+                                foreach ($queryCat_run as $item) {
+                                    if ($item['id'] == $producto['categoria']) {
+                                ?>
+                                        <option selected value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <option value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group col-sm-1">
                             <input type="text" class="form-control" placeholder="Disponible" name="disponible" value="<?= $_GET['available']; ?>">
@@ -82,14 +150,25 @@
         ?>
             <div id="collapseInsertar" class="collapse" aria-labelledby="headingOne" data-parent="#acordionTarjeta">
                 <div class="card-body">
-                    <form class="form-row" action="crudConn.php" method="post">
+                    <form class="form-row" action="stock_items/crudConn.php" method="post">
                         <div class="form-group col-sm-3">
                             <input type="text" class="form-control" placeholder="Nombre" name="nombre">
                         </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" placeholder="Marca" name="marca">
+                        <div class="form-group col-sm-1">
+                            <select class="form-control" placeholder="Marca" name="marca">
+                                <?php foreach ($queryMar_run as $item) { ?>
+                                    <option value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-sm-1">
+                            <select class="form-control" placeholder="Categoria" name="categoria">
+                                <?php foreach ($queryCat_run as $item) { ?>
+                                    <option value=<?= $item['id']; ?>><?= $item['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-2">
                             <input type="text" class="form-control" placeholder="Disponible" name="disponible">
                         </div>
                         <div class="form-group col-sm-2">

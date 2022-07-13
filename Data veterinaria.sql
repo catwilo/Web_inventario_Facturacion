@@ -2,14 +2,18 @@ CREATE DATABASE Stock;
 /*Tablas con datos de referencia de dependecia foranea*/
 CREATE TABLE `Stock`.`Categorias` (`id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT , `nombre` TINYTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci; 
 ALTER TABLE `Stock`.`Categorias` ADD INDEX `IndexCategorias_nombre` (`nombre`); 
+INSERT INTO `Stock`.`Categorias` (`nombre`) VALUES ('') ;
+
 
 CREATE TABLE `Stock`.`Marcas` (`id` TINYINT UNSIGNED NOT NULL  AUTO_INCREMENT, `nombre` TINYTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci; 
 ALTER TABLE `Stock`.`Marcas` ADD INDEX `IndexMarcas_nombre` (`nombre`); 
+INSERT INTO `Stock`.`Marcas` (`nombre`) VALUES ('') ;
+
 
 
 /* Tablas con dependencias foraneas*/
 
-CREATE TABLE `Stock`.`Productos` (`nombre` TINYTEXT NOT NULL , `marca` TINYINT UNSIGNED NOT NULL , `categoria` TINYINT UNSIGNED NOT NULL , `disponible` SMALLINT UNSIGNED NOT NULL , `valor_unitario` MEDIUMINT UNSIGNED NOT NULL , `codigo_barras` BIGINT UNSIGNED NULL DEFAULT NULL , `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci; 
+CREATE TABLE `Stock`.`Productos` (`nombre` TINYTEXT NOT NULL , `marca` TINYINT UNSIGNED NOT NULL , `categoria` TINYINT UNSIGNED NOT NULL , `disponible` SMALLINT UNSIGNED NOT NULL , `valor_unitario` MEDIUMINT UNSIGNED NOT NULL , `codigo_barras` BIGINT UNSIGNED NOT NULL , `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci; 
 /* FK's de Productos*/
 ALTER TABLE `Stock`.`Productos` ADD CONSTRAINT `FK_Productos_Marcas` FOREIGN KEY (`marca`) REFERENCES `Marcas`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
 ALTER TABLE `Stock`.`Productos` ADD CONSTRAINT `FK_Productos_Categorias` FOREIGN KEY (`categoria`) REFERENCES `Categorias`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
@@ -17,6 +21,8 @@ ALTER TABLE `Stock`.`Productos` ADD CONSTRAINT `FK_Productos_Categorias` FOREIGN
 ALTER TABLE `Stock`.`Productos` ADD INDEX `IndexProductos_nombre` (`nombre`);
 ALTER TABLE `Stock`.`Productos` ADD INDEX `IndexProductos_marca` (`marca`);
 ALTER TABLE `Stock`.`Productos` ADD INDEX `IndexProductos_categoria` (`categoria`); 
+ALTER TABLE `Stock`.`Productos` ADD UNIQUE `IndexProductos_codigo_barras` (`codigo_barras`);
+
 
 /*Vistas reemplazando las FK*/
 CREATE OR REPLACE VIEW `Stock`.`View_Productos` AS SELECT `Stock`.`Productos`.`nombre` AS `nombre`, `Stock`.`Marcas`.`nombre` AS `marca`, `Stock`.`Categorias`.`nombre` AS `categoria`, `Stock`.`Productos`.`disponible` AS `disponible`, `Stock`.`Productos`.`valor_unitario` AS `valor_unitario`, `Stock`.`Productos`.`codigo_barras` AS `codigo_barras`, `Stock`.`Productos`.`id` AS `id` FROM `Stock`.`Productos` INNER JOIN `Stock`.`Categorias` ON `Stock`.`Productos`.`categoria` = `Stock`.`Categorias`.`id` INNER JOIN `Stock`.`Marcas` ON `Stock`.`Productos`.`marca` = `Stock`.`Marcas`.`id`; 

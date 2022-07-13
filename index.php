@@ -6,7 +6,17 @@
 </li>
 <li class="nav-item">
     <a class="nav-link" href="./stock.php">
-        Inventario
+        Productos
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="./marcas.php">
+        Marcas
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="./categorias.php">
+        Categorias
     </a>
 </li>
 </ul>
